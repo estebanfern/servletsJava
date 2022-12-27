@@ -28,8 +28,8 @@ public class Consulta3 extends Consulta{
                 out.println("<p>CANTIDAD DE FACTURAS = " + gasto + "</p>");
                 out.println("<br>");
             }
-            out.println("<html>");
             out.println("<body>");
+            out.println("<html>");
             rs.close();
             stmt.close();
         }catch (Exception e){
