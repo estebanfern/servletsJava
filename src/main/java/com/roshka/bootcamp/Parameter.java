@@ -21,7 +21,6 @@ public class Parameter extends HttpServlet {
         handleRequest(request, response);
     }
 
-
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         PrintWriter out = response.getWriter();
