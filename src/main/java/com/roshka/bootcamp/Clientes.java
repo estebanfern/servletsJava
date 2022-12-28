@@ -1,10 +1,13 @@
 package com.roshka.bootcamp;
 
+import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -36,6 +39,23 @@ public class Clientes extends Consulta{
             out.println("<html>");
         }catch (Exception e){
             System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) {
+        try {
+            res.setContentType("text/json");
+            PreparedStatement stmt = connection.prepareStatement("INSERT INTO cliente (nombre, apellido, nro_cedula, telefono) VALUES (?, ?, ?, ?)");
+            stmt.setString(1, req.getParameter("nombre"));
+            stmt.setString(2, req.getParameter("apellido"));
+            stmt.setString(3, req.getParameter("cedula"));
+            stmt.setString(4, req.getParameter("telefono"));
+            stmt.executeUpdate();
+            stmt.close();
+            res.getWriter().println("{\"status\" : 200}");
+        }catch (Exception e) {
+            System.out.printf(e.getMessage());
         }
     }
 }

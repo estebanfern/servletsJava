@@ -10,7 +10,7 @@ public class ConnectionDb {
             Class.forName("org.postgresql.Driver");
             connection = DriverManager
                     .getConnection("jdbc:postgresql://localhost:5432/bootcamp_market",
-                            "postgres", "estebanco");
+                            "postgres", "postgres");
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getClass().getName()+": "+e.getMessage());
